@@ -1,2 +1,12 @@
 *.class
 build/*.class
+build/classes/rmi/client/RMIClient.class
+build/classes/rmi/IClienteController.class
+build/classes/rmi/RMIServer.class
+build/classes/view/ClienteListarDialog$1.class
+build/classes/view/ClienteListarDialog$2.class
+build/classes/view/ClienteListarDialog$3.class
+build/classes/view/ClienteListarDialog$4.class
+build/classes/view/ClienteListarDialog$5.class
+build/classes/view/ClienteListarDialog$6.class
+build/classes/view/ClienteListarDialog.class
