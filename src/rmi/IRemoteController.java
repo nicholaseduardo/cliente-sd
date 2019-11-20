@@ -14,9 +14,8 @@ import model.Cliente;
  *
  * @author nicho
  */
-public interface IClienteController extends Remote {
-    public void salvar(Integer id, String nome, String email,
-            String celular, String cpf) throws RemoteException;
+public interface IRemoteController extends Remote {
+    public void salvar(Object object) throws RemoteException;
     public List listar() throws RemoteException;
     public Cliente buscarPorId(Integer id) throws RemoteException;
 }
