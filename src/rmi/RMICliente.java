@@ -15,20 +15,23 @@ import model.Cliente;
  *
  * @author nicho
  */
-public class RMIServer implements IClienteController {
+public class RMICliente implements IRemoteController {
 
     private ClienteController controller;
-    
-    public RMIServer() throws ClassNotFoundException, SQLException {
+
+    public RMICliente() throws ClassNotFoundException, SQLException {
         super();
         controller = new ClienteController();
     }
-    
+
     @Override
-    public void salvar(Integer id, String nome, String email, 
-            String celular, String cpf) throws RemoteException {
+    public void salvar(Object object) throws RemoteException {
         try {
-            controller.salvar(id, nome, email, celular, cpf);
+            if (object instanceof Cliente) {
+                Cliente c = (Cliente) object;
+                controller.salvar(c.getId(), c.getNome(),
+                        c.getEmail(), c.getCelular(), c.getCpf());
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -43,5 +46,5 @@ public class RMIServer implements IClienteController {
     public Cliente buscarPorId(Integer id) throws RemoteException {
         return controller.buscarPorId(id);
     }
-    
+
 }
