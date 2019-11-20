@@ -14,10 +14,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import rmi.IClienteController;
-import rmi.RMIServer;
+import rmi.RMICliente;
 import sun.rmi.server.UnicastRef;
 import view.ClienteListarDialog;
+import rmi.IRemoteController;
 
 /**
  *
