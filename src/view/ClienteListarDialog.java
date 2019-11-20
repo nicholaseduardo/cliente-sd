@@ -20,8 +20,9 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import model.Cliente;
-import rmi.IClienteController;
-import rmi.RMIServer;
+import pattern.factory.RemoteClienteFactory;
+import rmi.RMICliente;
+import rmi.IRemoteController;
 
 /**
  *
@@ -36,6 +37,10 @@ public class ClienteListarDialog extends javax.swing.JFrame {
 
     /**
      * Creates new form ClienteListarDialog
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
+     * @throws java.rmi.RemoteException
+     * @throws java.net.UnknownHostException
      */
     public ClienteListarDialog() throws ClassNotFoundException, SQLException, RemoteException, UnknownHostException {
         super("Lista de Clientes");
@@ -43,8 +48,7 @@ public class ClienteListarDialog extends javax.swing.JFrame {
         controller = new ClienteController();
         lista = (List<Cliente>) controller.listar();
 
-        RMIServer rmiServer = new RMIServer();
-        IClienteController stub = (IClienteController) UnicastRemoteObject.exportObject(rmiServer, 0);
+        IRemoteController stub = RemoteClienteFactory.getInstance().getRemoteObject();
         // Registra o objeto ClienteController no registro de RMI
         registro = LocateRegistry.createRegistry(1099);
         registro.rebind("RMIServer", stub);
